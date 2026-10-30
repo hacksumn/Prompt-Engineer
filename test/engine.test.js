@@ -1,0 +1,5 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {generate} from '../engine.js';
+const d={role:'Research analyst',input:'Original studies only',mission:'Compare three options',audience:'Founders',constraints:'$200 budget',format:'A comparison table',model:'Claude'};
+test('preserves AIM context and requires clarification and honest verification',()=>{const r=generate(d);for(const x of Object.values(d))assert.ok(r.prompt.includes(x));assert.equal(r.questions.length,3);assert.equal(r.refined.length,2);assert.ok(r.prompt.includes('not performed'));assert.ok(r.prompt.includes('Never invent citations'));});
+test('variations produce distinct approaches with same mission',()=>{const a=generate(d),b=generate(d,'deep');assert.notEqual(a.prompt,b.prompt);assert.ok(b.prompt.includes(d.mission));assert.ok(b.prompt.includes('counterevidence'));});
+test('missing mission is rejected, missing context is disclosed',()=>{assert.throws(()=>generate({...d,mission:' '}),/ideal outcome/);assert.ok(generate({...d,input:'',role:''}).prompt.includes('No background supplied'));});
