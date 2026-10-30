@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: aim-studio
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: node --version
+    startCommand: npm start
+    healthCheckPath: /api/status
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: AIM_MODEL
+        value: gpt-4.1-mini
+      - key: AIM_ALLOWED_ORIGINS
+        value: https://hacksumn.github.io
+      - key: AIM_OPENAI_API_KEY
+        sync: false
+      - key: AIM_ACCESS_TOKEN
+        generateValue: true
