@@ -17,3 +17,7 @@ Twelve engine/server tests and fifteen browser audit groups passed after adding 
 ## Output contract, model-native structure, and inference fixes
 
 Twenty engine, adaptive-flow, and server tests passed, and all fifteen browser audit groups passed in Chromium with mocked provider responses. Added coverage: explicit-role extraction, an improve-my-own-work task type, inflection handling (for example "symptoms", "cars"), model-specific structure with the task last, tag-injection neutralization, and fallback for an unknown target model. Not verified: live provider calls, real response quality of the new prompt structure against the old one, and Render deployment. The prompt layouts follow published vendor guidance but have not been A/B tested; see the report for the proposed evaluation.
+
+## Automatic saving
+
+Reproduced in Chromium: generating a prompt stored nothing until Save was clicked, and the Talk to AIM button labeled "Use in studio & save" did not save. All generation paths now save automatically and update one record instead of duplicating. Sixteen browser audit groups pass, including a new one covering auto-save, no duplicate on explicit Save, variant switching, new-record-on-start-over, and persistence after reload. Not covered: behavior in private browsing or with site data blocked (the existing storage-failure groups cover the failure messages).
