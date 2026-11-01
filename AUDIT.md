@@ -13,3 +13,7 @@ Saved prompts remain local to the browser and device, not cloud synchronized. Cl
 ## Optional live AI integration
 
 Twelve engine/server tests and fifteen browser audit groups passed after adding Talk to AIM. Model-provider responses were mocked. Coverage includes server credential forwarding, code authentication, origin allowlisting, message/body validation, request limits, provider failures, conversational answer buttons, precise draft transfer to the studio/library, connection errors, blocked API-key entry in the browser, and preservation of messages after failed sends. A focused rerun also passed after adding target-model forwarding. No real OpenAI API key or hosting credentials were available. Live provider calls, real response quality, and private backend deployment remain unverified; the UI explicitly requires connection setup.
+
+## Output contract, model-native structure, and inference fixes
+
+Twenty engine, adaptive-flow, and server tests passed, and all fifteen browser audit groups passed in Chromium with mocked provider responses. Added coverage: explicit-role extraction, an improve-my-own-work task type, inflection handling (for example "symptoms", "cars"), model-specific structure with the task last, tag-injection neutralization, and fallback for an unknown target model. Not verified: live provider calls, real response quality of the new prompt structure against the old one, and Render deployment. The prompt layouts follow published vendor guidance but have not been A/B tested; see the report for the proposed evaluation.
