@@ -21,3 +21,9 @@ Twenty engine, adaptive-flow, and server tests passed, and all fifteen browser a
 ## Automatic saving
 
 Reproduced in Chromium: generating a prompt stored nothing until Save was clicked, and the Talk to AIM button labeled "Use in studio & save" did not save. All generation paths now save automatically and update one record instead of duplicating. Sixteen browser audit groups pass, including a new one covering auto-save, no duplicate on explicit Save, variant switching, new-record-on-start-over, and persistence after reload. Not covered: behavior in private browsing or with site data blocked (the existing storage-failure groups cover the failure messages).
+
+## Neon chat redesign
+
+Implemented a purple/pink/blue desktop conversation workspace, a collapsible A.I.M. brief, in-memory conversation switching/search, message suggestions, Enter-to-send preference, Stop control, reader-preserving arrival behavior, keyboard focus handling, and reduced-motion styles. Existing automatic library saving, model-specific prompt formats, inference improvements, and the 6000-token live assistant cap were retained from upstream.
+
+Validation on the combined code: all 20 engine/server tests and all 18 browser audit groups passed. axe-core reported zero automated WCAG A/AA violations in four states: desktop welcome, open connection settings, desktop conversation with suggestions/drafts, and mobile conversation with reduced motion. A 320-pixel-wide reflow check found no horizontal overflow. This is automated and keyboard validation, not comprehensive assistive-technology certification. Chat provider responses in UI tests were mocked; no private access codes or real user conversations were used.

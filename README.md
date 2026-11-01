@@ -54,3 +54,11 @@ Structure follows the selected target, based on each vendor's published guidance
 ## Automatic saving
 
 Generating a prompt (quick start, the manual form, the decision web, refinement, or a Talk to AIM draft) saves it to the library automatically. Further generations from the same draft update that one saved record instead of adding duplicates, and switching between Precision and Deep exploration on a saved prompt updates it too. **Start over** or loading a starter begins a new record. The Save button remains for explicit updates. Saved prompts live in the browser's localStorage for the exact site address you use, so the GitHub Pages site and a Render address keep separate libraries; use Export library and Import JSON to move prompts between them.
+
+## Neon chat workspace
+
+Open `/#chat` for the conversation workspace: electric purple, pink, and blue accents; text-based assistant replies; a collapsible A.I.M. brief; in-tab conversation search/switching; and suggested-answer buttons. New conversation preserves earlier conversations in this tab. Refreshing clears that conversation history; saved prompts stay in the existing library. Connection settings and the API credential boundary are unchanged.
+
+Enter sends by default; Shift+Enter inserts a newline. Uncheck Enter sends to use Enter for newlines. A Stop response control cancels a pending browser request and preserves the message. A new-response button appears when an answer arrives while you are reading earlier messages. Keyboard focus returns to the composer when appropriate, without taking it away from another active control. Escape closes connection settings. Reduced-motion preferences disable movement and smooth scrolling.
+
+The automated accessibility audit uses Playwright and axe-core. Install those development tools separately with `npm install --no-save --package-lock=false playwright axe-core`, then run `npm run test:a11y` after building. `AXE_CORE_PATH` can point to an existing `axe.min.js`; `CHROMIUM_PATH` can select an existing browser. The audit checks WCAG A/AA rules in welcome, connection, populated desktop, and populated mobile/reduced-motion states. Automated checks supplement keyboard testing and do not establish full screen-reader certification or comprehensive WCAG conformance.

@@ -7,6 +7,7 @@
     "start": "node server.mjs",
     "test": "node --test",
     "build": "node scripts/build.mjs",
-    "test:browser": "node scripts/audit-browser.mjs"
+    "test:browser": "node scripts/audit-browser.mjs",
+    "test:a11y": "node scripts/audit-accessibility.mjs"
   }
 }
