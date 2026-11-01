@@ -115,5 +115,6 @@ async function sendChat(text){
 $('#chat-form').addEventListener('submit',e=>{e.preventDefault();sendChat($('#chat-input').value);});
 $('#chat-build').onclick=()=>sendChat('Build my two copy-ready prompt variations now. Use what I have already told you and label any remaining assumptions instead of asking for more typing.');
 chatControls();renderChatSessions();wireChatStarters();syncConnectionDisclosure();
-const routes=['create','chat','library','guide'];if(routes.includes(location.hash.slice(1)))view(location.hash.slice(1));
+const routes=['create','chat','library','guide'];view(routes.includes(location.hash.slice(1))?location.hash.slice(1):'chat');
+$('#open-new-chat').onclick=()=>view('chat');
 window.addEventListener('hashchange',()=>{const name=location.hash.slice(1);if(routes.includes(name))view(name);});
