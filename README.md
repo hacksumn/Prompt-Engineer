@@ -66,3 +66,5 @@ The automated accessibility audit uses Playwright and axe-core. Install those de
 ## Wallpaper
 
 The translucent artwork is stored at `assets/ai-wallpaper.png` and served by the Node server. The standalone build embeds it, so no extra files are required when opening the exported HTML. The wallpaper moves slowly behind existing panel fills; interface color values are unchanged. Use the footer's Pause/Resume background animation control, or enable your device's reduced-motion preference. Pausing uses its own `aim-wallpaper-paused` localStorage preference and does not modify your prompt library.
+
+The wallpaper uses full-frame contain sizing and drift without zooming. Light glass panel fills keep the scene visible behind controls. Space Grotesk (headings) and Plus Jakarta Sans (body) are self-hosted under `assets/fonts/` with their SIL Open Font Licenses; the standalone build embeds both WOFF2 files. No external font service is required.
