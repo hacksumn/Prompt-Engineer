@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {timingSafeEqual} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 import {requestTurn} from './api/assistant.mjs';
-const files={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/engine.js':['engine.js','text/javascript'],'/adaptive.js':['adaptive.js','text/javascript']};
+const files={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/engine.js':['engine.js','text/javascript'],'/adaptive.js':['adaptive.js','text/javascript'],'/assets/ai-wallpaper.png':['assets/ai-wallpaper.png','image/png']};
 export function createServer({env=process.env,fetchImpl=fetch}={}){
  let windowStart=0,requests=0;
  return http.createServer(async(req,res)=>{
@@ -37,7 +37,7 @@ export function createServer({env=process.env,fetchImpl=fetch}={}){
   }
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);return res.end('Method not allowed');}
   const f=files[pathname];if(!f){res.writeHead(404);return res.end('Not found');}
-  try{const content=await readFile(new URL(f[0],import.meta.url));res.writeHead(200,{'Content-Type':f[1]+'; charset=utf-8','Cache-Control':'no-cache'});res.end(req.method==='HEAD'?undefined:content);}catch{res.writeHead(500);res.end('Unable to load app');}
+  try{const content=await readFile(new URL(f[0],import.meta.url));res.writeHead(200,{'Content-Type':f[1].startsWith('image/')?f[1]:f[1]+'; charset=utf-8','Cache-Control':'no-cache'});res.end(req.method==='HEAD'?undefined:content);}catch{res.writeHead(500);res.end('Unable to load app');}
  });
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)createServer().listen(Number(process.env.PORT)||3000,'0.0.0.0');

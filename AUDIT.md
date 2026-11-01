@@ -29,3 +29,9 @@ Implemented a purple/pink/blue desktop conversation workspace, a collapsible A.I
 Validation on the combined code: all 20 engine/server tests and all 18 browser audit groups passed. axe-core reported zero automated WCAG A/AA violations in four states: desktop welcome, open connection settings, desktop conversation with suggestions/drafts, and mobile conversation with reduced motion. A 320-pixel-wide reflow check found no horizontal overflow. This is automated and keyboard validation, not comprehensive assistive-technology certification. Chat provider responses in UI tests were mocked; no private access codes or real user conversations were used.
 
 Homepage follow-up: root URLs now render the redesigned chat by default, including before JavaScript initializes. Explicit studio links retain the prompt editor and show an Open new chat button. A dedicated root/navigation/reload test and both mocked live-chat regression groups passed after the change.
+
+## Translucent animated wallpaper
+
+Added an RGBA wallpaper asset based on the supplied artwork, a low-opacity decorative fixed background layer, and a slow transform-only drift. Existing interface color values and panel fills were retained. A footer control pauses/resumes motion and stores that preference separately from prompts; the operating system's reduced-motion setting disables animation.
+
+Validation: 20 engine/server tests passed; the new wallpaper browser group and both mocked live-chat groups passed. The wallpaper group checks embedded loading, opacity, pointer transparency, pause persistence, reduced-motion disabling, unchanged text color, and mobile overflow. The server image route returned a valid PNG with image/png content type. Four automated accessibility states reported zero violations after adding the image. Both server-hosted and standalone builds include the wallpaper.

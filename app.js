@@ -118,3 +118,10 @@ chatControls();renderChatSessions();wireChatStarters();syncConnectionDisclosure(
 const routes=['create','chat','library','guide'];view(routes.includes(location.hash.slice(1))?location.hash.slice(1):'chat');
 $('#open-new-chat').onclick=()=>view('chat');
 window.addEventListener('hashchange',()=>{const name=location.hash.slice(1);if(routes.includes(name))view(name);});
+
+// Wallpaper motion is independent of prompts and respects the device motion preference.
+const wallpaperPreference=matchMedia('(prefers-reduced-motion: reduce)');
+let wallpaperPaused=false;try{wallpaperPaused=localStorage.getItem('aim-wallpaper-paused')==='true';}catch{}
+function updateWallpaperMotion(){document.body.classList.toggle('wallpaper-paused',wallpaperPaused);const button=$('#wallpaper-motion');button.hidden=wallpaperPreference.matches;button.textContent=wallpaperPaused?'Resume background animation':'Pause background animation';}
+$('#wallpaper-motion').onclick=()=>{wallpaperPaused=!wallpaperPaused;try{localStorage.setItem('aim-wallpaper-paused',String(wallpaperPaused));}catch{}updateWallpaperMotion();};
+wallpaperPreference.addEventListener('change',updateWallpaperMotion);updateWallpaperMotion();
